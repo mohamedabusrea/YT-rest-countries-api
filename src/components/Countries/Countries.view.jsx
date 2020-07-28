@@ -5,12 +5,15 @@ import Tile from "../Tile/Tile.view";
 import EmptySearch from "../EmptySearch/EmptySearch.view";
 
 import './Countries.styles.scss'
+import {DROPDOWN_OPTIONS} from "../Search/Search.constants";
 
-const Countries = ({searchInput}) => {
+const Countries = ({searchInput, selectedRegion}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [countriesArray, setCountriesArray] = useState([]);
+  const [filteredCountriesArray, setFilteredCountriesArray] = useState([]);
 
   useEffect(() => fetchCountries(), []);
+  useEffect(() => filterCountriesArray(searchInput, selectedRegion), [countriesArray, searchInput, selectedRegion]);
 
   const fetchCountries = () => {
     fetch('https://restcountries.eu/rest/v2/all')
@@ -27,21 +30,38 @@ const Countries = ({searchInput}) => {
       })
   };
 
-  const filterCountriesArray = (searchInput = '') => {
-    const trimmedSeachInput = searchInput.trim();
+  const filterCountriesArray = (searchTerm, regionObject) => {
+    let result;
 
-    if (trimmedSeachInput) {
-      return countriesArray.filter(item => item.name.toLowerCase().includes(trimmedSeachInput.toLowerCase()));
+    result = filterByName(searchTerm, countriesArray);
+    result = filterByRegion(regionObject, result);
+
+    setFilteredCountriesArray(result);
+  };
+
+  const filterByName = (countryName = '', dataArray) => {
+    const trimmedSearchInput = countryName.trim();
+
+    if (trimmedSearchInput.length) {//Only search when user provide a search value
+      return dataArray.filter(item => item.name.toLowerCase().includes(trimmedSearchInput.toLowerCase()));
     }
 
-    return countriesArray;
+    return dataArray;
+  }
+
+  const filterByRegion = (regionObject, dataArray) => {
+    if (regionObject.value !== DROPDOWN_OPTIONS[0].value) {//only filter when value is not "All"
+      return dataArray.filter(item => item.region.toLowerCase() === regionObject.value);
+    }
+
+    return dataArray;
   }
 
   return (
     <div className='Countries'>
-      {filterCountriesArray(searchInput).length ?
+      {filteredCountriesArray.length ?
         <div className="Countries__content">
-          {filterCountriesArray(searchInput).map((item, index) => <Tile key={index} data={item}/>)}
+          {filteredCountriesArray.map((item, index) => <Tile key={index} data={item}/>)}
         </div>
         :
         <EmptySearch isLoading={isLoading}/>

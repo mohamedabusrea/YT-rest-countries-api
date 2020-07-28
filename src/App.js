@@ -4,13 +4,14 @@ import classNames from "classnames";
 import Header from './components/Header/Header.view';
 import Search from './components/Search/Search.view';
 import Countries from "./components/Countries/Countries.view";
+import {DROPDOWN_OPTIONS} from "./components/Search/Search.constants";
 
 import './App.scss';
 
 function App() {
   const [isDarkFlag, setIsDarkFlag] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState();
-  const [searchInput, setSearchInput] = useState();
+  const [selectedRegion, setSelectedRegion] = useState(DROPDOWN_OPTIONS[0]);
+  const [searchInput, setSearchInput] = useState('');
 
   const AppClasses = classNames('App', {'App--isDark': isDarkFlag});
 
