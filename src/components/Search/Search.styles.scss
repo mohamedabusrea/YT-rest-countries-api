@@ -1,0 +1,59 @@
+@import "../../mixins";
+
+.Search {
+  padding: calc(var(--default-padding) * 2) 0;
+
+  @include fablet{
+    padding-top: calc(var(--default-padding) * 1.5);
+  }
+
+  &__content {
+    @include content-style;
+    display: flex;
+
+    @include fablet {
+      flex-direction: column;
+    }
+  }
+
+  &__inputContent {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    position: absolute;
+    left: calc(var(--default-padding) * 1.2);
+    z-index: 1;
+  }
+
+  &__input {
+    border: none;
+    padding-left: calc(var(--default-padding) * 3.5);
+    width: 400px;
+    height: var(--input-height);
+    box-shadow: var(--default-shadow-element);
+    border-radius: var(--default-radius);
+    outline: none;
+    font-size: var(--font-size-normal);
+    background-color: var(--color-elements);
+    color: var(--color-text);
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--color-input);
+    opacity: 1; /* Firefox */
+  }
+
+  &__dropdownContent {
+    margin-left: auto;
+    width: 200px;
+
+    @include fablet {
+      margin-left: 0;
+      margin-top: calc(var(--default-padding) * 2);
+    }
+  }
+}

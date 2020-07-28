@@ -1,0 +1,81 @@
+@import "../../mixins";
+
+.Countries {
+  &__content {
+    @include content-style;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: calc(var(--default-padding) * 3);
+    padding-bottom: calc(var(--default-padding) * 3);
+
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include fablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &__emptyData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__emptyImage {
+    opacity: .5;
+    max-width:600px;
+    width: 100%;
+  }
+
+  &__emptyText {
+    color: var(--color-input);
+    font-size: var(--font-size-xLarge);
+    font-weight: var(--font-weight-light);
+    margin: var(--default-padding) 0;
+  }
+}
+
+.Tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-elements);
+  border-radius: var(--default-radius);
+  box-shadow: var(--default-shadow-element);
+  cursor: pointer;
+  transition: all var(--default-timing-animation);
+  overflow: hidden;
+
+  &__top {
+    flex: 1 1;
+    display: flex;
+  }
+
+  &__bottom {
+    padding: var(--default-padding);
+    padding-bottom: calc(var(--default-padding) * 2);
+    font-size: var(--font-size-small);
+    line-height: 22px;
+  }
+
+  &__name {
+    font-size: var(--font-size-normal);
+    font-weight: var(--font-weight-extra-bold);
+    margin-bottom: var(--default-padding);
+  }
+
+  &__label {
+    font-weight: var(--font-weight-bold);
+  }
+
+  &__img {
+    max-width: 100%;
+  }
+}

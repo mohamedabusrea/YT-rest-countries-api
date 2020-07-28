@@ -1,0 +1,36 @@
+@import "../../mixins";
+
+.Header {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-elements);
+  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+  height: 80px;
+  transition: background-color var(--default-timing-animation);
+
+  &__content {
+    @include content-style;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: var(--font-size-xLarge);
+    font-weight: var(--font-weight-extra-bold);
+
+    @include mobile {
+      font-size: var(--font-size-large);
+    }
+  }
+
+  &__darkModeContent {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__darkModeTitle {
+    margin-left: calc(var(--default-padding) / 3);
+    font-weight: var(--font-weight-bold);
+  }
+}
