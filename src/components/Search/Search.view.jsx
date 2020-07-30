@@ -1,6 +1,7 @@
 import React from 'react';
-import MdSearch from 'react-ionicons/lib/MdSearch'
-import Select from 'react-select'
+import MdSearch from 'react-ionicons/lib/MdSearch';
+import Select from 'react-select';
+
 import {DROPDOWN_OPTIONS} from "./Search.constants";
 
 import './Search.styles.scss'

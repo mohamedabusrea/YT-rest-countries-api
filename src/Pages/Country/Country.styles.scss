@@ -1,0 +1,120 @@
+@import "../../mixins";
+
+.Country {
+
+  &__content {
+    @include content-style;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--default-padding);
+  }
+
+  &__backButton {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-elements);
+    border-radius: var(--default-radius);
+    align-self: flex-start;
+    box-shadow: var(--default-shadow-element);
+    padding: calc(var(--default-padding) / 2) var(--default-padding);
+    margin: calc(var(--default-padding) * 2) 0;
+    transition: background-color var(--default-timing-animation);
+    cursor: pointer;
+  }
+
+  &__backButtonLabel {
+    margin-left: calc(var(--default-padding) / 2);
+  }
+
+  &__detailsContent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(var(--default-padding) * 6);
+
+    @include fablet {
+      grid-template-columns: repeat(1, 1fr);
+      gap: calc(var(--default-padding) * 3);
+    }
+  }
+
+  &__image {
+    img {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__name {
+    font-size: var(--font-size-xLarge);
+    font-weight: var(--font-weight-extra-bold);
+  }
+
+  &__moreDetails {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--default-padding);
+    margin-top: var(--default-padding);
+    line-height: 2.6rem;
+
+    @include fablet {
+      grid-template-columns: repeat(1, 1fr);
+      gap: calc(var(--default-padding) * 2);
+    }
+  }
+
+  &__detailsValue {
+    font-weight: var(--font-weight-light);
+    margin-left: calc(var(--default-padding) / 2);
+  }
+
+  &__bordersContent {
+    display: flex;
+    align-items: center;
+    margin-top: calc(var(--default-padding) * 2);
+
+    @include fablet {
+      flex-direction: column;
+      align-items: inherit;
+    }
+  }
+
+  &__borderLabel {
+    flex-shrink: 0;
+  }
+
+  &__borders {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &__bordersBg {
+    background-color: var(--color-border);
+    padding: calc(var(--default-padding) / 4);
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-left: var(--default-padding);
+
+    @include fablet {
+      margin-left: inherit;
+      margin-top: calc(var(--default-padding) / 2);
+    }
+  }
+
+  &__borderValue {
+    font-weight: var(--font-weight-light);
+    border-radius: var(--default-radius);
+    background-color: var(--color-elements);
+    box-shadow: var(--default-shadow-element);
+    margin-bottom: calc(var(--default-padding) / 4);
+    margin-left: calc(var(--default-padding) / 4);
+    padding: calc(var(--default-padding) / 3) calc(var(--default-padding));
+    transition: background-color var(--default-timing-animation);
+  }
+}

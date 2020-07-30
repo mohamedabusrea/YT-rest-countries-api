@@ -1,17 +1,27 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classNames from "classnames";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 import Header from './components/Header/Header.view';
-import Search from './components/Search/Search.view';
-import Countries from "./components/Countries/Countries.view";
-import {DROPDOWN_OPTIONS} from "./components/Search/Search.constants";
 
 import './App.scss';
+import Country from "./Pages/Country/Country.view";
+import Home from "./Pages/Home/Home.view";
+import {fetchCountries} from "./utils/fetchCountries";
 
 function App() {
+  useEffect(() => {
+    fetchCountries().then(result => {
+      setCountriesArray(result);
+    });
+  }, [])
+
   const [isDarkFlag, setIsDarkFlag] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState(DROPDOWN_OPTIONS[0]);
-  const [searchInput, setSearchInput] = useState('');
+  const [countriesArray, setCountriesArray] = useState(false);
 
   const AppClasses = classNames('App', {'App--isDark': isDarkFlag});
 
@@ -19,11 +29,16 @@ function App() {
     <div className={AppClasses}>
       <div className="App__content">
         <Header isDarkFlag={isDarkFlag} setIsDarkFlag={setIsDarkFlag}/>
-        <Search searchInput={searchInput}
-                setSearchInput={setSearchInput}
-                setSelectedRegion={setSelectedRegion}/>
-        <Countries searchInput={searchInput}
-                   selectedRegion={selectedRegion}/>
+        <Router>
+          <Switch>
+            <Route path={`/:countryName`}>
+              <Country countriesArray={countriesArray}/>
+            </Route>
+            <Route path='/'>
+              <Home countriesArray={countriesArray}/>
+            </Route>
+          </Switch>
+        </Router>
       </div>
     </div>
   );
