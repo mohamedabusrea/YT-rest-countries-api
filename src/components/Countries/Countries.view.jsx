@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import {CSSTransition} from 'react-transition-group'
 
 import Tile from "../Tile/Tile.view";
 import EmptySearch from "../EmptySearch/EmptySearch.view";
@@ -28,7 +29,14 @@ const Countries = ({countriesArray, searchInput, selectedRegion}) => {
     <div className='Countries'>
       {filteredCountriesArray.length ?
         <div className="Countries__content">
-          {filteredCountriesArray.map((item, index) => <Tile key={index} data={item}/>)}
+          {filteredCountriesArray.map((item, index) => <CSSTransition classNames="Tile"
+                                                                      in={true}
+                                                                      timeout={0}
+                                                                      appear={true}
+                                                                      key={index}>
+              <Tile data={item} style={{transitionDelay: `${(index + 1) * 100}ms`}}/>
+            </CSSTransition>
+          )}
         </div>
         :
         <EmptySearch isLoading={isLoading}/>

@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 import './Tile.styles.scss'
 import formatNumber from "../../utils/formatNumber";
 
-const Tile = ({data}) => {
+const Tile = ({data, style}) => {
   return (
-    <Link to={`/${data.name}`} className='Tile__link'>
-      <div className='Tile'>
+    <div className='Tile' style={style}>
+      <Link to={`/${data.name}`} className='Tile__link'>
         <div className="Tile__top">
           <img className='Tile__image'
                src={data.flag}
@@ -24,8 +24,8 @@ const Tile = ({data}) => {
           <p className='Tile__capital'>
             <span className='Tile__label'>Capital:</span> {data.capital || 'Unknown'}</p>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

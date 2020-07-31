@@ -11,8 +11,18 @@
   height: 100%;
   overflow: hidden;
 
+  &-appear {
+    opacity: 0;
+  }
+
+  &-appear-active{
+    opacity: 1;
+    transition: opacity 300ms;
+  }
+
   &__link {
     text-decoration: none;
+    color: inherit;
   }
 
   &__top {
