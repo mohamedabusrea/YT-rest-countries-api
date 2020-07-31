@@ -18,6 +18,8 @@ const Country = ({countriesArray}) => {
 
   const [data, setData] = useState({});
 
+  const [animationObj, setAnimationObj] = useState({xPosition: 0, yPosition: 0});
+
   const generateCountryData = (countryName) => {
     if (countriesArray.length) {
       const data = countriesArray.find(item => item.name.toLowerCase() === countryName.toLowerCase());
@@ -40,6 +42,13 @@ const Country = ({countriesArray}) => {
     return generatedBorders;
   }
 
+  const applyAnimation = (event) => {
+    setAnimationObj({
+      xPosition: event.nativeEvent.layerX,
+      yPosition: event.nativeEvent.layerY,
+    });
+  };
+
   const goBack = () => history.push('/');
 
   return (
@@ -54,7 +63,10 @@ const Country = ({countriesArray}) => {
           :
           <div className='Country__detailsContent'>
             <div className='Country__image'>
-              <img src={data.flag} alt={data.name}/>
+              <img src={data.flag}
+                   alt={data.name}
+                   style={{transform: `rotateY(${animationObj.xPosition / 100}deg) rotateX(${-animationObj.yPosition / 100}deg)`}}
+                   onMouseMove={applyAnimation}/>
             </div>
             <div className='Country__details'>
               <p className='Country__name'>{countryName}</p>

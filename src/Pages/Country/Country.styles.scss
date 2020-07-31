@@ -38,9 +38,13 @@
   }
 
   &__image {
+    perspective: 1000px;
+
     img {
       max-width: 100%;
       width: 100%;
+      box-shadow: var(--default-shadow-element);
+      transition: all .1s;
     }
   }
 
