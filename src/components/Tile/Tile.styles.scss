@@ -11,13 +11,21 @@
   height: 100%;
   overflow: hidden;
 
+  &:hover {
+    transform: scale(.99);
+  }
+
   &-appear {
     opacity: 0;
   }
 
-  &-appear-active{
+  &-appear-active {
     opacity: 1;
     transition: opacity 300ms;
+  }
+
+  &-appear-done {
+    transition-delay: 0ms !important;
   }
 
   &__link {
