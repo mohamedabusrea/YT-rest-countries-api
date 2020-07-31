@@ -9,7 +9,10 @@ const Tile = ({data}) => {
     <Link to={`/${data.name}`} className='Tile__link'>
       <div className='Tile'>
         <div className="Tile__top">
-          <img className='Tile__image' src={data.flag} alt={data.name}/>
+          <img className='Tile__image'
+               src={data.flag}
+               alt={data.name}
+               loading='lazy'/>
         </div>
         <div className="Tile__bottom">
           <p className='Tile__name'>{data.name}</p>
