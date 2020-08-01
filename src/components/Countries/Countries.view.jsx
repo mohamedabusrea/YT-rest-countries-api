@@ -23,7 +23,7 @@ const Countries = ({countriesArray, searchInput, selectedRegion}) => {
     setFilteredCountriesArray(result);
   };
 
-  const isLoading = !countriesArray.length && !filteredCountriesArray.length;
+  const isLoading = !filteredCountriesArray.length && !searchInput.length;
 
   return (
     <div className='Countries'>
@@ -34,7 +34,7 @@ const Countries = ({countriesArray, searchInput, selectedRegion}) => {
                                                                       timeout={0}
                                                                       appear={true}
                                                                       key={index}>
-              <Tile data={item} style={{transitionDelay: `${(index + 1) * 100}ms`}}/>
+              <Tile data={item} style={{transitionDelay: `${index * 100}ms`}}/>
             </CSSTransition>
           )}
         </div>
