@@ -12,7 +12,10 @@ import filterByRegion from "../../utils/filterByRegion";
 const Countries = ({countriesArray, searchInput, selectedRegion}) => {
   const [filteredCountriesArray, setFilteredCountriesArray] = useState([]);
 
-  useEffect(() => filterCountriesArray(searchInput, selectedRegion), [countriesArray, searchInput, selectedRegion]);
+  useEffect(() => {
+    filterCountriesArray(searchInput, selectedRegion)
+    /*eslint-disable-next-line*/
+  }, [countriesArray, searchInput, selectedRegion]);
 
   const filterCountriesArray = (searchTerm, regionObject) => {
     let result;

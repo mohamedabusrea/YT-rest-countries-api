@@ -10,6 +10,7 @@ import './Country.styles.scss';
 const Country = ({countriesArray}) => {
   useEffect(() => {
     generateCountryData(countryName);
+    /*eslint-disable-next-line*/
   }, [countriesArray]);
 
   const {countryName} = useParams();
